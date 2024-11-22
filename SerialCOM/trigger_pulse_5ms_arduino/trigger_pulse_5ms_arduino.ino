@@ -20,6 +20,9 @@ void loop() {
     if (trigger_state) {
         digitalWrite(trigger_pin, HIGH);  // Set pin to 5V
         digitalWrite(LED_BUILTIN, HIGH); // Turn on the built-in LED
+        delay(5);  // send a pulse for 5 miliseconds
+        digitalWrite(trigger_pin, LOW);
+        trigger_state = false;
         // Serial.println("Trigger sent");
     } else {
         digitalWrite(trigger_pin, LOW);   // Set pin to 0V
