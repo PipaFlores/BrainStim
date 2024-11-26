@@ -6,15 +6,17 @@ except ImportError:
 import time
 
 
-class SerialTriggerArduino(serial.Serial):
+class ArduinoTrigger(serial.Serial):
     """
     A class to send signals to an Arduino via serial.
     """
 
     def __init__(self, Serial_Port, initial_delay=2):
         """
-        Initialize the serial port.
-
+        Initialize the serial port. Set ups a delay of 3 seconds to allow the device to boot.
+        If no signals are sent shortly after initialization (e.g. within 3 seconds), then it can be
+        set to 0. Otherwise, the signal will not be sent.
+        
         Args:
             Serial_Port (string) - the port to initialize the serial port on.
             
@@ -48,12 +50,12 @@ class SerialTriggerArduino(serial.Serial):
         """
         if isinstance(signal, bool):
             if signal == True:
-                signal = '1'
+                signal = bytes([1])
             else:
-                signal = '0'
+                signal = bytes([0])
         else:
             raise ValueError("Signal must be a boolean")
-        self.write(bytes(signal, 'utf-8'))
+        self.write(signal)
         time.sleep(sleep)
 
 

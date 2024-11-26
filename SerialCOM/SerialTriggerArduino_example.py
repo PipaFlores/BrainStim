@@ -1,8 +1,8 @@
 import time
-from SerialTriggerArduino import SerialTriggerArduino
+from SerialTriggerArduino import ArduinoTrigger
 
 # Initialize the serial port
-serialport = SerialTriggerArduino("COM8")
+serialport = ArduinoTrigger("COM8")
 
 
 # Use the send_signal method to send a signal to the Arduino

@@ -1,6 +1,11 @@
 bool trigger_state = false;
 int trigger_pin = A5;
 
+// This Arduino sketch is designed to control a trigger pin and the built-in LED based on serial input.
+// The trigger pin is set to HIGH (5V) when the serial port receives a 1, and LOW (0V) when it receives a 0.
+// The built-in LED is turned on when the trigger pin is HIGH, and off when it is LOW.
+// The serial port must be initialized with a baud rate of 9600.
+
 void setup() {
     Serial.begin(9600);        // Initialize Serial communication with 9600
     pinMode(A5, OUTPUT); // Set the pin as an output
